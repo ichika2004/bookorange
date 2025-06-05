@@ -1,31 +1,67 @@
-# bookorange
-BookOrange -web 
+# BookOrange - Web 系統 (V1)
 
-V1:
-old Account to test:
+一個用於書籍買賣的網頁系統，具備帳號註冊、商品管理與搜尋功能。
 
-Email: test@gmail.com
-password: 11111111
+---
 
-Email: homo@gmail.com
-password: 1145141919810
+## 🔐 測試帳號 (V1)
 
-Email: test2@gmail.com
-password: 11111111
+| Email                | Password       |
+|---------------------|----------------|
+| test@gmail.com      | 11111111       |
+| homo@gmail.com      | 1145141919810  |
+| test2@gmail.com     | 11111111       |
 
-目前v1功能：
+---
 
-註冊帳號，使用php的非對稱加密方式hash加密，所以無法解密
+## 📌 目前功能說明
 
-登錄帳號，用php的password_verify()檢測hash()的密碼
+### 🧑‍💻 帳號管理
+- **註冊帳號**  
+  使用 PHP 的 `password_hash()` 進行不可逆加密，保障使用者密碼安全。
+- **登入帳號**  
+  使用 `password_verify()` 驗證輸入密碼與資料庫中的 hash 是否相符。
 
-大廳展示隨機商品（待改良）
+### 🛍️ 商品操作
+- **大廳展示**  
+  隨機顯示商品資訊（未來將改良推薦排序邏輯）。
+- **商品搜尋與篩選**  
+  可依據「關鍵字」、「語言」與「類別」進行搜尋與過濾。
+- **新增商品**  
+  將商品資訊寫入 MySQL 資料庫 `bookOrangeDB`，圖片會儲存至 `product_img/` 資料夾。
+- **編輯商品**  
+  可修改商品資訊與圖片。若更換圖片，會自動刪除舊圖以節省空間。
+- **刪除商品**  
+  會先從 `SELL` 表格移除，接著刪除對應商品於 `Product` 表格與圖片檔案。
 
-搜尋功能（能依照類別跟語言分類）:
----搜尋關鍵字後用語言跟類別篩選
+---
 
-新增商品資料（到資料庫bookOrangeDB與商品圖片資料夾product_img/）
+## ⚙️ 系統需求
 
-編輯商品資料（更改圖片時會刪除原圖片檔）
+- PHP 7.4 以上
+- MySQL 5.7 以上
+- Apache 或其他支援 PHP 的 Web Server
+- 建議使用 XAMPP、MAMP、或 Docker 進行本地開發
 
-刪除商品資料（先刪除SELL的資料再動Product），並且會刪除圖片資料夾內的對應商品圖
+---
+
+## 🛠️ 安裝與使用方式
+
+1. **下載專案**
+   ```bash
+   git clone https://github.com/your-username/bookorange-web.git
+2. **建立資料庫**
+
+使用 phpMyAdmin 或 CLI 匯入 bookOrangeDB.sql
+
+資料庫名稱為 bookOrangeDB
+
+3. **設定環境**
+
+修改 config.php（或其他連線設定檔）中的資料庫連線資訊
+
+4. **啟動伺服器**
+
+使用 Apache 或其他方式啟動本地伺服器
+
+瀏覽 http://localhost/bookorange-web/ 進行操作
